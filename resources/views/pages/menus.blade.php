@@ -6,7 +6,7 @@
     </div>
 
     <div id="nav">
-        <input id="selectOrder">
+        
             <button type="submit" class="btn btn-default">
                         <i class="fa fa-plus"></i> Cheese Burger
             </button>
@@ -23,7 +23,25 @@
             <button type="submit" class="btn btn-default">
                         <i class="fa fa-plus"></i> Fish Burger
             </button>
-        </input>
+            <br>
+            <button type="submit" class="btn btn-default">
+                        <i class="fa fa-plus"></i> Frech Fry
+            </button>
+            <br>
+            <button type="submit" class="btn btn-default">
+                        <i class="fa fa-plus"></i> Chicken-Nugts
+            </button>
+            <br>
+            <button type="submit" class="btn btn-default">
+                        <i class="fa fa-plus"></i> Coke Cola
+            </button>
+            <br>
+            <button type="submit" class="btn btn-default">
+                        <i class="fa fa-plus"></i> Lemonade
+            </button>
+            
+
+       
     </div>
 
     <div id="section">
@@ -33,7 +51,9 @@
     </div>
 
     <div id="footer">
-        Thanks for your order!
+        <button type="submit" class="btn btn-default">
+                        <i class="fa fa-plus"></i> Confirm Order
+            </button>
     </div>
 
 @stop
