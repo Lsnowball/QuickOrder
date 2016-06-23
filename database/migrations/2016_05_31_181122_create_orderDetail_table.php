@@ -14,10 +14,10 @@ class CreateOrderDetailTable extends Migration
     {
         Schema::enableForeignKeyConstraints();
         Schema::create('orderDetail', function (Blueprint $table) {
-            $table->integer('id');
-
-            $table->integer('menu_id');
-            
+            $table->integer('id')->unsigned();
+            $table->foreign('id')->references('order_id')->on('orders');
+            $table->integer('menu_id')->unsigned();
+            $table->foreign('menu_id')->references('id')->on('menus');
             $table->integer('quantity');
 
         });

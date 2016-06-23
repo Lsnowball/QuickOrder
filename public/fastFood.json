@@ -1,0 +1,10 @@
+{"menus": [
+	{"name":"Cheese Burger", "image":"cheese-burger.jpg"},
+	{"name":"Ham Burger", "image":"ham-burger.jpg"},
+	{"name":"Chiken Burger", "image":"Chicken-burger.jpg"},
+	{"name":"Fish Burger", "image":"fish-burger.jpeg"},
+	{"name":"Frech Fry", "image":"frech-fry.jpg"},
+	{"name":"Chiken Nugts", "image":"chicken-nugts.jpg"},
+	{"name":"Coca Cola", "image":"cocacola.png"},
+	{"name":"Lemonade", "image":"lemonade.jpg"}
+]}

@@ -5,10 +5,10 @@
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
             <div class="panel panel-default">
-                <div class="panel-heading">Welcome</div>
+                <div class="panel-heading">Dashboard</div>
 
                 <div class="panel-body">
-                    This is a fast food order machine. Make an order, please login!
+                    You are logged in!
                 </div>
             </div>
         </div>

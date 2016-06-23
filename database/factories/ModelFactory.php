@@ -11,6 +11,8 @@
 |
 */
 
+use DB;
+
 $factory->define(App\User::class, function (Faker\Generator $faker) {
     return [
         'name' => $faker->name,
@@ -19,3 +21,21 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
         'remember_token' => str_random(10),
     ];
 });
+
+// $factory->define(App\OrderDetail::class, function () {
+//     return [
+//         'id' => rand(1, 11),
+//         'menu_id' => rand(1, 8),
+//         'quantity' => rand(1, 3),
+//     ];
+// });
+
+// $factory->define(App\Order::class, function () {
+//     return [
+//         'user_id' => rand(1, 11),
+//         'total_price' => DB:table('OrderDetail')
+//         						->where()
+//         						->sum(,
+        
+//     ];
+// });
