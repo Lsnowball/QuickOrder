@@ -13,7 +13,8 @@
     @else
         <ul>
             @foreach( $orders as $order)
-                <li><a href="{{ route('orders.show', $order->slug) }}">{{ $order->order_id }}</a></li>
+                <!-- <li><a href="{{ route('orders.show', $order->slug) }}">{{ $order->order_id }}</a></li> -->
+                <li>{{ $order->order_id }}</li>
             @endforeach
         </ul>
     @endif

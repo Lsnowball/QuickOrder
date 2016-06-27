@@ -5,8 +5,9 @@
         <h1>Quick order</h1>
     </div>
 
+
     <div id="nav">
-        <form id="inputBtn">
+        
 
             @foreach( $menus  as $menu )
             <input type="button" class="btn" value="{{ $menu->name }}"></input>
@@ -14,7 +15,7 @@
             
             @endforeach
             
-      </form>
+      
     </div>
 
     <div id="showDetail">
@@ -35,7 +36,7 @@
       <a class="logoutLink" href="{{ URL::to('logout') }}">Logout</a>
 
     </div>
-
+    
             <script>
 
             $(document).ready(function(){
@@ -82,10 +83,37 @@
                 });
 
                  $(document).on('click', '.confirmOrder', function() {
+                    var menus = [];
+                    var quantity = [];
+                    var index = 0;
+
+                    menuList.forEach(function(menu) {
+                        if ( menus.indexOf(menu) == -1 ) {   // check new menu
+                            menus.push(menu);
+                            quantity.push(1);
+                            index++;
+                        } else {
+                            quantity[menus.indexOf(menu)] +=1; //old menu just counting.
+                        }
+
+                    });
+
+                    // alert(JSON.stringify(menus));
+                    //compact into one array for passing through ajax.
+                    var order = [];
+                    var length = menus.length;
+                    var i;
+                    for (i = 0; i < length; i++) {
+                        order.push({"name": menus[i], "quantity": quantity[i]});
+                    }
+
+                    alert(JSON.stringify(order));
+
+                    // ajax call controller to save data.
                     var saveData = $.ajax({
                         type: 'POST',
                         url: "/orderHistory",
-                        data: menuList,
+                        data: JSON.stringify(order),
                         
                         success: function(resultData) { alert("Save Complete") }
                     });
