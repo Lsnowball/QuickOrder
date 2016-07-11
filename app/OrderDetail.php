@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class OrderDetail extends Model
 {
     protected $table = 'orderDetail';
+    public $timestamps = false;
+    
 
     //ONE order has many orderDetails.
     public function order() {

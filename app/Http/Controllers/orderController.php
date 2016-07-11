@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\OrderDetail;
 use App\Http\Requests;
 use App\Order;
 
+use App\Http\Requests\OrderListFormRequest;
+use DB;
 class orderController extends Controller
 {
     /**
@@ -31,31 +33,34 @@ class orderController extends Controller
 	}
 
 	public function saveOrder( Request $request ) {
-		$newOders = $request->order;
+		$input = $request->input('menu');
+		// print implode($input);
+
 		//generate order id
 		$order = new Order;
 		$total_price = 0.0;
-
-		foreach($newOders as $menu) {
-			//generate orderDetail id & save orderDetail (order_id, menu_id, quantity).
-			$orderDetail = new OrderDetail;
-			$orderDetail->order_id = $order->order_id;
-			$orderDetail->menu_id = $menu->name;
-			$orderDetail->quantity = $menu->quantity;
-			$orderDetail->save();
-			$price = DB::table('menus')->where('name', $menu->name)->value('price');
-			$total_price += $price * $orderDetail->quantity;
-
-		};
 		//save order(order_id, user_id, total_price).
 		$order->user_id = \Auth::user()->id;
+		
+		$order->save();
+	
+		 foreach($input as $menu) {
+			//generate orderDetail id & save orderDetail (order_id, menu_id, quantity).
+			$detail = new OrderDetail;
+			$detail->order_id = $order->id;  //use new generated order id.
+			$detail->menu_id = DB::table('menus')->where('name', $menu)->value('id');
+			$detail->quantity = 1;
+			$order->orderDetails()->save($detail);
+			$price = DB::table('menus')->where('name', $menu)->value('price');
+			$total_price += $price * 1;
+
+		};
 		$order->total_price = $total_price;
 		$order->save();
 
-		// $orders = Order::all();
-		// return response()->view('orders.index', compact('orders'));
-		return response()->view('welcome');
-
+		$orders = Order::all();
+		return response()->view('orders.index', compact('orders'));
+		
 	}
  
 	// /**

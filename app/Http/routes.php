@@ -10,9 +10,9 @@
 | and give it the controller to call when that URI is requested.
 |
 */
+use Illuminate\Http\Request;
 
-
-Route::get('/',function(){
+Route::get('/', function(){
 	return view('welcome');
 });
 
@@ -40,4 +40,24 @@ Route::bind('orderDetail', function($value, $route) {
 
 Route::get('/home/{menu}', 'menusController@fetchPrice');
 Route::get('/orderHistory', 'orderController@index');
-Route::post('/orderHistory', 'orderController@saveOrder');
+// Route::post('/orderHistory', 'orderController@saveOrder');
+// Route::post('/orderHistory', function(Request $request) {
+// 	$orders = $request->all();
+// 	return $orders;
+// });
+
+// Route::post('/orderHistory', function() {
+// 	return "order";
+// });
+
+Route::post('/orderHistory', 
+  ['as' => 'orderHistory_save', 'uses' => 'orderController@saveOrder']);
+
+Route::post('/confirm', 'orderController@saveOrder');
+
+
+
+
+
+
+
