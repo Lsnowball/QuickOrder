@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
+
 class UsersTableSeeder extends Seeder
 {
     /**
@@ -16,6 +17,7 @@ class UsersTableSeeder extends Seeder
     //         'email' => str_random(10).'@gmail.com',
     //         'password' => bcrypt('secret'),
     //     ]);
+        DB::table('users')->delete();
 
         factory(App\User::class, 10)->create()->each(function($u) {
         // $u->posts()->save(factory(App\Post::class)->make());

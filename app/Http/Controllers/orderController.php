@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\OrderDetail;
 use App\Http\Requests;
 use App\Order;
+use DateTime;
 
 use App\Http\Requests\OrderListFormRequest;
 use DB;
@@ -18,19 +19,21 @@ class orderController extends Controller
 	 */
 	public function index()
 	{
-		$orders = Order::all();
-		return view('orders.index', compact('orders'));
-	}
-
-	//fetch data from database.
-	public function fetch() {
 		$userId = \Auth::user()->id;
+		$orders = DB::table('orders')->where('user_id', $userId)->orderBy('id', 'desc')->simplePaginate(15);
 
-  		$orders = Order::where('user_id', $userId)->orderBy('created_at', 'desc')->get();
-
-  		// Return as json
-  		return Response::json($orders);
+		return view('orders.index', ['orders' => $orders]);
 	}
+
+	// //fetch data from database.
+	// public function fetch() {
+	// 	$userId = \Auth::user()->id;
+
+ //  		$orders = Order::where('user_id', $userId)->orderBy('created_at', 'desc')->get();
+
+ //  		// Return as json
+ //  		return Response::json($orders);
+	// }
 
 	public function saveOrder( Request $request ) {
 		$input = $request->input('menu');
@@ -41,7 +44,7 @@ class orderController extends Controller
 		$total_price = 0.0;
 		//save order(order_id, user_id, total_price).
 		$order->user_id = \Auth::user()->id;
-		
+		$order->created_at = new DateTime;
 		$order->save();
 	
 		 foreach($input as $menu) {
@@ -59,7 +62,7 @@ class orderController extends Controller
 		$order->save();
 
 		$orders = Order::all();
-		return response()->view('orders.index', compact('orders'));
+		return redirect()->route('orderHistory');
 		
 	}
  

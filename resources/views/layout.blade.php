@@ -37,12 +37,13 @@
             #showDetail {
                 width:500px;
                 float:left;
+                text-align: center;
                 padding:10px;
             }
             #orderList {
                 line-height:30px;
                 background-color:#eeeeee;
-                height:300px;
+                height:500px;
                 width:200px;
                 float:right;
                 padding:5px;
@@ -53,6 +54,20 @@
                 clear:both;
                 text-align:center;
                 padding:5px;
+            }
+
+            table.orderHistory {
+                width:100%;
+                border-collapse: collapse;
+                text-align: center;
+            }
+            table, th, td {
+                border: 1px solid black;
+
+            }
+            th, td {
+                padding: 5px;
+                text-align: left;
             }
             a.viewHistory {
                 color:lightyellow;

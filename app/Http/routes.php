@@ -39,21 +39,10 @@ Route::bind('orderDetail', function($value, $route) {
 });
 
 Route::get('/home/{menu}', 'menusController@fetchPrice');
-Route::get('/orderHistory', 'orderController@index');
-// Route::post('/orderHistory', 'orderController@saveOrder');
-// Route::post('/orderHistory', function(Request $request) {
-// 	$orders = $request->all();
-// 	return $orders;
-// });
+Route::get('/orderHistory', 
+	['as' => 'orderHistory', 'uses' => 'orderController@index']);  //display old orders descending.
 
-// Route::post('/orderHistory', function() {
-// 	return "order";
-// });
-
-Route::post('/orderHistory', 
-  ['as' => 'orderHistory_save', 'uses' => 'orderController@saveOrder']);
-
-Route::post('/confirm', 'orderController@saveOrder');
+Route::post('/confirm', 'orderController@saveOrder'); //create a new order.
 
 
 

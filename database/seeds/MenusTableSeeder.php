@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
+
 class MenusTableSeeder extends Seeder
 {
     /**
@@ -9,7 +10,11 @@ class MenusTableSeeder extends Seeder
      *
      * @return void
      */
+
+
     public function run() {
+        DB::table('menus')->delete();
+
         DB::table('menus')->insert ([
         	'name'=>'Cheese Burger',
         	'price'=>'3.00',

@@ -13,20 +13,22 @@
     @if ( !$orders->count() )
         You have no orders
     @else
-        <table class="orderList">
+
+        <table class="orderHistory">
             <tr>
                 <th>Order Number</th>
                 <th>Order Details</th>
                 <th>Total Price</th>
+                <th>Time </th>
             </tr>
             
-            @foreach( $orders as $order)
-                <!-- <li><a href="{{ route('orders.show', $order->slug) }}">{{ $order->order_id }}</a></li> -->
+            @foreach( $orders as $order )
+                
                 <tr>
                     <td>{{ $order->id }}</td>
-                     <td><?php $orderDetails=App\OrderDetail::where('order_id', $order->id)->orderBy('menu_id')->get(); foreach($orderDetails as $orderDetail) { $menu=App\Menu::where('id', $orderDetail->menu_id)->get(); echo $menu->name.', ';} ?></td> 
-                    
+                    <td><?php $orderDetails=App\OrderDetail::where('order_id', $order->id)->get(); foreach($orderDetails as $orderDetail) { $name=App\Menu::where('id', $orderDetail['menu_id'])->value('name'); echo $name.', ';}   ?></td>
                     <td>{{ $order->total_price }}</td>
+                    <td>{{ $order->created_at }}</td>
                 </tr>
               
             @endforeach
